@@ -1,0 +1,18 @@
+{
+  "name": "webpage-personal",
+  "version": "1.0.0",
+  "description": "Landing page personal con Node.js y MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["landing-page", "node.js", "mysql"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.5.0",
+    "dotenv": "^16.0.3"
+  }
+}
