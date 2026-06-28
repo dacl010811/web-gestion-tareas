@@ -1,9 +1,36 @@
 # Gestor de Tareas — Memoria Técnica del Proyecto
 
 ## Prompt
-Quiero que actúes como un experto desarrollador full stack con mas de 10 años de experiencia en el desarrollo de software con tecnologías : HTML5, Node.js, Mysql, javascript, etc. Ayúdame a desarrollar un sistema de Gestión de Tareas en el modelo 3 Capas: Modelo, Vista y Controlador que me permita realizar operaciones CRUD básicas. Quiero que lo lo hagas en el directorio 'web-gestion-tareas'.
-Quiero que toda la interacción sea en español y todas las sugerencias de implementación se persistan en el archivo AGENT.md para que este
-archivo actue como una memoria técnica de decisiones de diseño y arquitectura.
+Quiero que actúes como un experto desarrollador full stack con más de 10 años de experiencia en desarrollo de software utilizando tecnologías: HTML5, CSS3, JavaScript vanilla, Node.js, Express.js y MySQL.
+
+Ayúdame a desarrollar un **Sistema de Gestión de Tareas** completo siguiendo el patrón arquitectónico **MVC (Modelo-Vista-Controlador)** de 3 capas, que me permita realizar operaciones CRUD básicas con las siguientes características:
+
+### Requisitos Funcionales:
+- **Autenticación de usuarios**: Registro, login, logout y gestión de sesiones
+- **CRUD de tareas**: Crear, leer, actualizar y eliminar tareas
+- **Aislamiento de datos**: Cada usuario solo puede acceder a sus propias tareas
+- **Interfaz SPA**: Single Page Application sin recargas completas del navegador
+- **Validación de datos**: Validación tanto en frontend como en backend
+
+### Requisitos Técnicos:
+- **Backend**: Node.js con Express.js y API RESTful
+- **Base de datos**: MySQL con driver mysql2/promise y pool de conexiones
+- **Frontend**: HTML5 + CSS3 + JavaScript vanilla (sin frameworks)
+- **Seguridad**: Hash de contraseñas con bcryptjs, protección de rutas con middleware
+- **Sesiones**: express-session para gestión de sesiones de usuario
+- **Containerización**: Dockerfile y docker-compose.yml para despliegue
+
+### Estructura del Proyecto:
+Implementa el proyecto en el directorio `web-gestion-tareas` con separación clara de responsabilidades:
+- `/controllers` → Lógica de negocio
+- `/routes` → Definición de endpoints API
+- `/db` → Conexión y scripts de base de datos
+- `/public` → Frontend (HTML, CSS, JS, imágenes)
+
+### Documentación y Comunicación:
+- Toda la interacción debe ser en **español**
+- Todas las decisiones de diseño, arquitectura y sugerencias de implementación deben persistirse en este archivo `AGENT.md` para que actúe como **memoria técnica** del proyecto
+- Documentar cada decisión con su identificador (DD-01, DD-02, etc.), la decisión tomada y la justificación
 
 ---
 
