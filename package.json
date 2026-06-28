@@ -1,18 +1,24 @@
 {
-  "name": "webpage-personal",
+  "name": "web-gestion-tareas",
   "version": "1.0.0",
-  "description": "Landing page personal con Node.js y MySQL",
+  "description": "Sistema de Gestión de Tareas — Arquitectura MVC con Node.js y MySQL",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "seed": "node db/seed.js"
   },
-  "keywords": ["landing-page", "node.js", "mysql"],
-  "author": "",
+  "keywords": ["gestion-tareas", "node.js", "mysql", "mvc", "crud"],
+  "author": "Damián",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mysql2": "^3.5.0",
-    "dotenv": "^16.0.3"
+    "express-session": "^1.17.3",
+    "mysql2": "^3.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
