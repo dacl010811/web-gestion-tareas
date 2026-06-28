@@ -10,8 +10,10 @@ services:
       - DB_PASSWORD=mysqlpw
       - DB_NAME=personal_web
       - PORT=3000
+      - SESSION_SECRET=secret-dev-change-in-production
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     volumes:
       - .:/app
     restart: unless-stopped
@@ -25,6 +27,12 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     restart: unless-stopped
 
 volumes:

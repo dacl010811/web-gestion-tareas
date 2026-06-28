@@ -30,15 +30,32 @@ const createTasksTable = `
 `;
 
 async function runSeed() {
-  try {
-    const conn = await pool.getConnection();
-    await conn.query(createUsersTable);
-    await conn.query(createTasksTable);
-    conn.release();
-    console.log('✅ Base de datos inicializada correctamente (tablas: users, tasks).');
-  } catch (err) {
-    console.error('❌ Error al inicializar la base de datos:', err.message);
-    // No se lanza el error para no bloquear el arranque si la BD no está disponible aún
+  let retries = 5;
+  let connected = false;
+
+  // Reintentar conexión si MySQL aún no está listo
+  while (retries > 0 && !connected) {
+    try {
+      const conn = await pool.getConnection();
+      connected = true;
+      
+      await conn.query(createUsersTable);
+      await conn.query(createTasksTable);
+      conn.release();
+      
+      console.log('✅ Base de datos inicializada correctamente (tablas: users, tasks).');
+      return; // Éxito - salir de la función
+    } catch (err) {
+      retries--;
+      if (retries > 0) {
+        console.warn(`⚠️  MySQL no está listo. Reintentando en 3 segundos... (${retries} intentos restantes)`);
+        await new Promise(resolve => setTimeout(resolve, 3000));
+      } else {
+        console.error('❌ Error fatal al inicializar la base de datos:', err.message);
+        console.error('💡 Asegúrate de que MySQL esté corriendo y las credenciales sean correctas.');
+        process.exit(1); // Terminar el proceso si no se puede conectar
+      }
+    }
   }
 }
 
