@@ -43,9 +43,13 @@ app.use((err, req, res, next) => {
 });
 
 // ─── Inicialización ───────────────────────────────────────────────────────────
-// Ejecutar seed de BD y luego iniciar el servidor
-runSeed().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Servidor ejecutándose en http://localhost:${PORT}`);
+// Ejecutar seed de BD y luego iniciar el servidor (solo si no es un test)
+if (require.main === module) {
+  runSeed().then(() => {
+    app.listen(PORT, () => {
+      console.log(`🚀 Servidor ejecutándose en http://localhost:${PORT}`);
+    });
   });
-});
+}
+
+module.exports = { app, runSeed };
